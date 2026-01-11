@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARS SAMO - Vision</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; text-align: center; padding: 20px; background: #f0f2f5; color: #333; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; font-size: 24px; margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+        
+        /* Stile Immagini */
+        .img-box { width: 100%; border-radius: 10px; margin-top: 15px; border: 1px solid #ddd; display: none; }
+        .comparison-label { font-size: 12px; font-weight: bold; color: #0056b3; margin-top: 10px; text-transform: uppercase; }
+        
+        .upload-btn { background: #0056b3; color: white; padding: 18px; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; display: block; width: 100%; margin: 20px 0; }
+        
+        #result { text-align: left; padding: 15px; background: #e3f2fd; border-left: 5px solid #0056b3; border-radius: 8px; display: none; margin-top: 20px; }
+        .loader { display: none; margin: 20px auto; border: 4px solid #f3f3f3; border-top: 4px solid #0056b3; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ARS SAMO</h1>
+    <div class="subtitle">Identificazione Ricambi Originali</div>
+
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">📸 SCATTA O CARICA FOTO</button>
+
+    <div class="loader" id="loader"></div>
+
+    <div id="userPhotoLabel" class="comparison-label" style="display:none;">Tua Foto:</div>
+    <img id="preview" class="img-box" alt="Anteprima">
+
+    <div id="officialPhotoLabel" class="comparison-label" style="display:none;">Riscontro Originale:</div>
+    <img id="officialImage" class="img-box" alt="Ricambio Originale">
+
+    <div id="result">
+        <strong>DETTAGLI RICAMBIO:</strong>
+        <div id="textResult"></div>
+    </div>
+</div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+    const officialImage = document.getElementById('officialImage');
+    const resultDiv = document.getElementById('result');
+    const textResult = document.getElementById('textResult');
+    const loader = document.getElementById('loader');
+
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload

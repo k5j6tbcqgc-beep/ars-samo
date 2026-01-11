@@ -1,0 +1,14 @@
+[
+  {
+    "codice": "RIC1619L01",
+    "nome": "Carrello tondo ARS",
+    "prezzo": "25.00€",
+    "descrizione": "Corpo bianco, vite a taglio superiore"
+  },
+  {
+    "codice": "RIC1373L01",
+    "nome": "Kit 4 rullini",
+    "prezzo": "45.00€",
+    "descrizione": "Compatibile con serie Samo Class"
+  }
+]
